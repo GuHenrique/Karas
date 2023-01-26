@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ColaboradorService {
-  private readonly API = 'assets/colaboradores.json';
+  private readonly API = 'api/colaboradores';
   constructor(private httpClient: HttpClient) {}
 
   list() {

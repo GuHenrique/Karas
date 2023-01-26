@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CargoService {
-  private readonly API = '/assets/cargos.json';
+  private readonly API = '/api/cargos';
 
   constructor(private httpClient: HttpClient) {}
 

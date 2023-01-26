@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, first, tap } from 'rxjs';
+import { first, tap, delay } from 'rxjs';
 
 import { Empresa } from './../model/empresa';
 
@@ -8,7 +8,7 @@ import { Empresa } from './../model/empresa';
   providedIn: 'root',
 })
 export class EmpresaService {
-  private readonly API = '/aassets/empresas.json';
+  private readonly API = 'api/empresas';
 
   constructor(private httpClient: HttpClient) {}
 

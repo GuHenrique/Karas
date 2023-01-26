@@ -1,6 +1,6 @@
 export interface Empresa {
-  _id?: number;
+  _id: number;
   razaoSocial: string;
   nomeFantasia: string;
-  cnpj: number;
+  cnpj: string;
 }
