@@ -1,14 +1,13 @@
+import { EmpresaComponent } from './empresa.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { EmpresaComponent } from './empresa.component';
+import { EmpresaFormComponent } from './empresa-form/empresa-form.component';
 
-const routes: Routes = [
-
-];
+const routes: Routes = [{ path: 'new', component: EmpresaFormComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class EmpresaRoutingModule { }
+export class EmpresaRoutingModule {}

@@ -5,6 +5,7 @@ import { catchError, Observable, of } from 'rxjs';
 
 import { Empresa } from './model/empresa';
 import { EmpresaService } from './service/empresa.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-empresa',
@@ -13,13 +14,15 @@ import { EmpresaService } from './service/empresa.service';
 })
 export class EmpresaComponent {
   empresas$: Observable<Empresa[]>;
-  displayedColumns = ['razaoSocial', 'nomeFantasia', 'cnpj'];
+  displayedColumns = ['razaoSocial', 'nomeFantasia', 'cnpj', 'acoes'];
 
   // empresaService: EmpresaService
 
   constructor(
     private empresaService: EmpresaService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     // this.empresaService = new EmpresaService();
     this.empresas$ = this.empresaService.list().pipe(
@@ -34,5 +37,9 @@ export class EmpresaComponent {
     this.dialog.open(ErrorDialogsComponent, {
       data: errorMsg,
     });
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
 }

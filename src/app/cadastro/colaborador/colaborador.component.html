@@ -36,6 +36,26 @@
           </td>
         </ng-container>
 
+        <!-- Ações Column -->
+        <ng-container matColumnDef="acoes">
+          <mat-header-cell *matHeaderCellDef>
+            <button mat-mini-fab color="primary" aria-label="Adicionar um colaborador" (click)="onAdd()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </mat-header-cell>
+
+          <mat-cell *matCellDef="let empresa">
+            <button mat-icon-button color="primary" aria-label="Editar colaborador">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" aria-label="Excluir colaborador">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>

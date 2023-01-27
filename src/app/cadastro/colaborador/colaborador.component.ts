@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { ErrorDialogsComponent } from './../../shared/components/error-dialogs/error-dialogs.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Component } from '@angular/core';
@@ -13,11 +14,13 @@ import { ColaboradorService } from './service/colaborador.service';
 })
 export class ColaboradorComponent {
   colaboradores$: Observable<Colaborador[]>;
-  displayedColumns = ['nome', 'cargo', 'empresa', 'salario'];
+  displayedColumns = ['nome', 'cargo', 'empresa', 'salario', 'acoes'];
 
   constructor(
     private colaboradorService: ColaboradorService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.colaboradores$ = colaboradorService.list().pipe(
       catchError((error) => {
@@ -31,5 +34,9 @@ export class ColaboradorComponent {
     this.dialog.open(ErrorDialogsComponent, {
       data: errorMsg,
     });
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
 }
