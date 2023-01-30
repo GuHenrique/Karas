@@ -1,19 +1,13 @@
-<div class="container">
+<mat-toolbar color="primary">
+  <button mat-button [matMenuTriggerFor]="menu">Cadastros</button>
+  <mat-menu #menu="matMenu">
 
+    <button mat-menu-item routerLink="empresas">Empresas</button>
 
-  <mat-toolbar color="primary">
-    <button mat-button [matMenuTriggerFor]="menu">Cadastros</button>
-    <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="cargos">Cargos</button>
 
-      <button mat-menu-item routerLink="empresas">Empresas</button>
+    <button mat-menu-item routerLink="colaboradores">Colaboradores</button>
 
-      <button mat-menu-item routerLink="cargos">Cargos</button>
-
-      <button mat-menu-item routerLink="colaboradores">Colaboradores</button>
-
-    </mat-menu>
-    <button mat-button routerLink="pagamento">Pagamento</button>
-  </mat-toolbar>
-
-
-</div>
+  </mat-menu>
+  <button mat-button routerLink="pagamento">Pagamento</button>
+</mat-toolbar>

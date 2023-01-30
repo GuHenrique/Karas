@@ -1,6 +1,10 @@
 <mat-card>
   <mat-card-content>
-    <mat-toolbar color="primary"> Empresas </mat-toolbar>
+    <mat-toolbar color="primary"> Empresas
+
+
+
+    </mat-toolbar>
 
     <div *ngIf="empresas$ | async as empresas; else carregando">
       <table mat-table [dataSource]="empresas" class="mat-elevation-z8">
@@ -25,9 +29,10 @@
         </ng-container>
 
         <!-- Ações Column -->
+
         <ng-container matColumnDef="acoes">
           <mat-header-cell *matHeaderCellDef>
-            <button mat-mini-fab color="primary" aria-label="Adicionar uma empresa" (click)="onAdd()">
+            <button mat-mini-fab color="primary" aria-label=" Adicionar uma empresa" (click)="onAdd()">
               <mat-icon>add</mat-icon>
             </button>
           </mat-header-cell>
@@ -42,6 +47,7 @@
             </button>
           </mat-cell>
         </ng-container>
+
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

@@ -1,1 +1,31 @@
-<p>cargo-form works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-toolbar color="primary"> Cadastro de Cargos </mat-toolbar>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="form">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Cargo" formControlName="descricao" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Empresa</mat-label>
+        <mat-select formControlName="empresa">
+          <mat-option *ngFor="let empresa of empresas" [value]="empresa">
+            {{empresa.nomeFantasia}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class=" full-width">
+        <input matInput placeholder="Salário" formControlName="salario" />
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Salvar</button>
+    <button mat-raised-button (click)="onCancel()">Cancelar</button>
+  </mat-card-actions>
+</mat-card>

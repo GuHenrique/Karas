@@ -13,9 +13,6 @@ export class EmpresaService {
   constructor(private httpClient: HttpClient) {}
 
   list() {
-    return this.httpClient.get<Empresa[]>(this.API).pipe(
-      first(),
-      tap((empresas) => console.log(empresas))
-    );
+    return this.httpClient.get<Empresa[]>(this.API).pipe(first());
   }
 }
