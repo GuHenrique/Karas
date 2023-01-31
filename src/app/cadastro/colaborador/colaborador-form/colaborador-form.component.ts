@@ -3,6 +3,7 @@ import { CargoService } from './../../cargo/service/cargo.service';
 import { EmpresaService } from './../../empresa/service/empresa.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-colaborador-form',
@@ -18,7 +19,7 @@ export class ColaboradorFormComponent {
     private formBuilder: FormBuilder,
     private empresaService: EmpresaService,
     private cargoService: CargoService,
-    private router: Router
+    private location: Location
   ) {
     this.form = this.formBuilder.group({
       nome: [null],
@@ -36,7 +37,8 @@ export class ColaboradorFormComponent {
     });
   }
   onSubmit() {}
+
   onCancel() {
-    this.router.navigate(['colaboradores']);
+    this.location.back();
   }
 }

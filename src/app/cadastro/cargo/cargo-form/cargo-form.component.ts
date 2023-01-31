@@ -1,4 +1,4 @@
-import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -16,7 +16,7 @@ export class CargoFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private empresaService: EmpresaService,
-    private router: Router
+    private location: Location
   ) {
     this.form = this.formBuilder.group({
       descricao: [null],
@@ -31,6 +31,6 @@ export class CargoFormComponent {
 
   onSubmit() {}
   onCancel() {
-    this.router.navigate(['cargos']);
+    this.location.back();
   }
 }

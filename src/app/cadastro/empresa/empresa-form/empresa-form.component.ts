@@ -1,6 +1,9 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { EmpresaService } from './../service/empresa.service';
 
 @Component({
   selector: 'app-empresa-form',
@@ -10,19 +13,37 @@ import { Router } from '@angular/router';
 export class EmpresaFormComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private service: EmpresaService,
+    private _snackBar: MatSnackBar,
+    private location: Location
+  ) {
     this.form = this.formBuilder.group({
       razaoSocial: [null],
       nomeFantasia: [null],
       cnpj: [null],
     });
   }
-
-  onSubmit() {}
-
-  onCancel() {
-    this.router.navigate(['empresas']);
+  ngOnInit() {}
+  onSubmit() {
+    this.service.save(this.form.value).subscribe(
+      (data) => this.onSuccess(),
+      (error) => this.onError()
+    );
   }
 
-  ngOnInit() {}
+  onCancel() {
+    this.location.back();
+  }
+  private onSuccess() {
+    this._snackBar.open('Empresa cadastrada com sucesso.', '', {
+      duration: 3000,
+    });
+    this.onCancel();
+  }
+
+  private onError() {
+    this._snackBar.open('Erro ao cadastrar empresa.', '', { duration: 3000 });
+  }
 }
