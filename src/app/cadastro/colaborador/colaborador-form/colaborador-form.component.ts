@@ -1,9 +1,11 @@
-import { Router } from '@angular/router';
-import { CargoService } from './../../cargo/service/cargo.service';
-import { EmpresaService } from './../../empresa/service/empresa.service';
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Location } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { CargoService } from './../../cargo/service/cargo.service';
+import { EmpresaService } from './../../empresa/service/empresa.service';
+import { ColaboradorService } from './../service/colaborador.service';
 
 @Component({
   selector: 'app-colaborador-form',
@@ -19,7 +21,9 @@ export class ColaboradorFormComponent {
     private formBuilder: FormBuilder,
     private empresaService: EmpresaService,
     private cargoService: CargoService,
-    private location: Location
+    private location: Location,
+    private colaboradorService: ColaboradorService,
+    private _snackBar: MatSnackBar
   ) {
     this.form = this.formBuilder.group({
       nome: [null],
@@ -36,7 +40,25 @@ export class ColaboradorFormComponent {
       this.cargos = data;
     });
   }
-  onSubmit() {}
+  onSubmit() {
+    this.colaboradorService.save(this.form.value).subscribe(
+      (data) => this.onSuccess(),
+      (error) => this.onerror()
+    );
+  }
+
+  onSuccess() {
+    this._snackBar.open('Colaborador cadastrado com sucesso'),
+      '',
+      { duration: '5000' };
+    this.onCancel();
+  }
+
+  onerror() {
+    this._snackBar.open('Erro ao cadastrar colaborador.'),
+      '',
+      { duration: '5000' };
+  }
 
   onCancel() {
     this.location.back();

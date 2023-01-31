@@ -3,5 +3,5 @@ export interface Colaborador {
   nome: string;
   cargo: string;
   empresa: string;
-  salario: number;
+  salario?: number;
 }

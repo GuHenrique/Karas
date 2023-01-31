@@ -1,8 +1,10 @@
+import { CargoService } from './../service/cargo.service';
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { EmpresaService } from '../../empresa/service/empresa.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cargo-form',
@@ -16,7 +18,9 @@ export class CargoFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private empresaService: EmpresaService,
-    private location: Location
+    private location: Location,
+    private cargoService: CargoService,
+    private _snackBar: MatSnackBar
   ) {
     this.form = this.formBuilder.group({
       descricao: [null],
@@ -29,8 +33,24 @@ export class CargoFormComponent {
     });
   }
 
-  onSubmit() {}
+  onSubmit() {
+    this.cargoService.save(this.form.value).subscribe(
+      (data) => this.onSuccess(),
+      (data) => this.onError()
+    );
+  }
   onCancel() {
     this.location.back();
+  }
+
+  onSuccess() {
+    this._snackBar.open('Cargo cadastrado com sucesso.', '', {
+      duration: 5000,
+    });
+    this.onCancel();
+  }
+
+  onError() {
+    this._snackBar.open('Erro ao cadastrar cargo.', '', { duration: 5000 });
   }
 }

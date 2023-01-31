@@ -12,7 +12,7 @@
       <mat-form-field class="full-width">
         <mat-label>Cargo</mat-label>
         <mat-select formControlName="cargo">
-          <mat-option *ngFor="let cargo of cargos" [value]="cargo">
+          <mat-option *ngFor="let cargo of cargos" [value]="cargo.descricao">
             {{cargo.descricao}}
           </mat-option>
         </mat-select>
@@ -21,7 +21,7 @@
       <mat-form-field class="full-width">
         <mat-label>Empresa</mat-label>
         <mat-select formControlName="empresa">
-          <mat-option *ngFor="let empresa of empresas" [value]="empresa">
+          <mat-option *ngFor="let empresa of empresas" [value]="empresa.nomeFantasia">
             {{empresa.nomeFantasia}}
           </mat-option>
         </mat-select>

@@ -13,4 +13,7 @@ export class ColaboradorService {
   list() {
     return this.httpClient.get<Colaborador[]>(this.API);
   }
+  save(data: Colaborador) {
+    return this.httpClient.post<Colaborador>(this.API, data);
+  }
 }

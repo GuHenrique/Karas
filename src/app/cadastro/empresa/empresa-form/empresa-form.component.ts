@@ -38,12 +38,12 @@ export class EmpresaFormComponent implements OnInit {
   }
   private onSuccess() {
     this._snackBar.open('Empresa cadastrada com sucesso.', '', {
-      duration: 3000,
+      duration: 5000,
     });
     this.onCancel();
   }
 
   private onError() {
-    this._snackBar.open('Erro ao cadastrar empresa.', '', { duration: 3000 });
+    this._snackBar.open('Erro ao cadastrar empresa.', '', { duration: 5000 });
   }
 }

@@ -14,4 +14,7 @@ export class CargoService {
   list() {
     return this.httpClient.get<Cargo[]>(this.API);
   }
+  save(data: Cargo) {
+    return this.httpClient.post<Cargo>(this.API, data);
+  }
 }
